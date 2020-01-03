@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:icon="clr-namespace:movie.Utils"
+             xmlns:vm="clr-namespace:movie.ViewModels"
+             x:Class="movie.Views.HomePage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <vm:HomePageViewModel></vm:HomePageViewModel>
+    </ContentPage.BindingContext>
+    <AbsoluteLayout>
+            <Grid BackgroundColor="#2D2D30"
+                     AbsoluteLayout.LayoutBounds="0,0, 1,400"
+                     AbsoluteLayout.LayoutFlags="YProportional,WidthProportional">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="58"></RowDefinition>                    
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Frame BackgroundColor="#393939" Margin="20,10" CornerRadius="19" HasShadow="False" Padding="20,10" Grid.Row="1">
+                    <StackLayout Orientation="Horizontal">
+                        <Label FontFamily="{DynamicResource MaterialFontFamily}" Text="{Static icon:IconFont.Search}" FontSize="18" TextColor="gray"/>
+                        <Label Text="Search for a movie,tv show,person" FontSize="18" TextColor="gray" />
+                    </StackLayout>
+                   
+            </Frame>
+                <Label Text="In Theaters" Grid.Row="2" Margin="20,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="In Theaters"  TextColor="White" FontAttributes="Bold" FontSize="24" ></Span>
+                            <Span Text="    "></Span>
+                            <Span Text="On TV"  TextColor="Gray" FontAttributes="None" FontSize="20" ></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            <CollectionView ItemsSource="{Binding nowPlayingMovies.results}"
+                            ItemsLayout="HorizontalList"
+                            HorizontalScrollBarVisibility="Never"  
+                            Grid.Row="3">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout WidthRequest="100" HorizontalOptions="CenterAndExpand" Padding="20,0,0,0">
+                            <ffimageloading:CachedImage
+                                Source="{Binding poster_path,StringFormat='https://image.tmdb.org/t/p/w300/{0}'}"
+                                BackgroundColor="#505050"
+                                Aspect="AspectFit"
+                                IsOpaque="True"
+                                WidthRequest="100"/>
+                            <Label WidthRequest="100"
+                                   TextColor="White"
+                                   Text="{Binding title}"
+                                   MaxLines="2"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+                </Grid>
+        <yummy:PancakeView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                           AbsoluteLayout.LayoutFlags="All"
+                           TranslationY="360"
+                           CornerRadius="25,25,0,0"
+                           BackgroundColor="white">
+            <StackLayout>
+           </StackLayout>
+        </yummy:PancakeView>
+    </AbsoluteLayout>
+    
+</ContentPage>

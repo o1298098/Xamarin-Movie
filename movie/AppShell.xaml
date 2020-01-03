@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:icon="clr-namespace:movie.Utils"
+       mc:Ignorable="d" xmlns:local="clr-namespace:movie.Views" Title="movie" x:Class="movie.AppShell">
+    <!-- 
+        Styles and Resources 
+    -->
+    <Shell.Resources>
+        <ResourceDictionary>            
+            <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Material Icons" />
+                <On Platform="Android" Value="MaterialIcons.ttf#Material Icons" />
+            </OnPlatform>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#A0A0A0" />
+                <Setter Property="Shell.TabBarTitleColor" Value="Black" />
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    <!-- Your Pages -->
+    <TabBar>
+        <Tab Title="Home" >
+            <Tab.Icon >
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{Static icon:IconFont.Home}"
+                    Size="25"
+                    />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}" Shell.NavBarIsVisible="False"/>
+        </Tab>
+        <Tab Title="Discover">
+             <Tab.Icon >
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{Static icon:IconFont.MovieCreation}"
+                    Size="25"
+                    />
+            </Tab.Icon>
+         <ShellContent ContentTemplate="{DataTemplate local:DiscoverPage}" Shell.NavBarIsVisible="False"/>
+        </Tab>
+        <Tab Title="Coming" >
+             <Tab.Icon >
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{Static icon:IconFont.Today}"
+                    Size="25"
+                    />
+            </Tab.Icon>
+           <ShellContent ContentTemplate="{DataTemplate local:ComingPage}" Shell.NavBarIsVisible="False"/>
+        </Tab>
+        <Tab Title="Account" >
+             <Tab.Icon >
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{Static icon:IconFont.AccountCircle}"
+                    Size="25"
+                    />
+            </Tab.Icon>
+           <ShellContent ContentTemplate="{DataTemplate local:AccountPage}" Shell.NavBarIsVisible="False"/>
+        </Tab>
+    </TabBar>
+    <!-- Optional Templates 
+    // These may be provided inline as below or as separate classes.
+
+    // This header appears at the top of the Flyout.
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid>ContentHere</Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    // ItemTemplate is for ShellItems as displayed in a Flyout
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Title, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    // MenuItemTemplate is for MenuItems as displayed in a Flyout
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Text, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    -->
+</Shell>
